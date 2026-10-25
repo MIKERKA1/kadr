@@ -1,4 +1,4 @@
-import { animate, createTimeline, stagger, utils } from 'animejs';
+import { animate, createTimeline, stagger, steps, utils } from 'animejs';
 import { animate as spring, scroll } from 'motion';
 
 const RATES = [60, 144, 240, 360, 540];
@@ -65,11 +65,11 @@ export function initHero(reduce: boolean) {
   const rate = { i: 0 };
   createTimeline({ defaults: { ease: 'outExpo' } })
     .add(chars, { y: '0%', '--w': 100, duration: 1300, delay: stagger(80) }, 0)
-    .add(slats, { scaleY: 0, duration: 900, delay: stagger(55), ease: 'steps(6)' }, 150)
+    .add(slats, { scaleY: 0, duration: 900, delay: stagger(55), ease: steps(6) }, 150)
     .add(corners, { opacity: 1, scale: 1, duration: 900, delay: stagger(70) }, 250)
     .add(copy, { opacity: 1, y: 0, duration: 1000, delay: stagger(70) }, 450)
     .add(rate, {
-      i: RATES.length - 1, duration: 1100, ease: 'steps(4)',
+      i: RATES.length - 1, duration: 1100, ease: steps(4),
       onUpdate: () => { count.textContent = String(RATES[Math.round(rate.i)]); },
     }, 400);
 

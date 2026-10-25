@@ -1,4 +1,4 @@
-import { animate, stagger, splitText, utils } from 'animejs';
+import { animate, stagger, steps, splitText, utils } from 'animejs';
 import { animate as spring, scroll, inView } from 'motion';
 
 const $$ = <T extends Element = HTMLElement>(s: string, root: ParentNode = document) => [...root.querySelectorAll<T>(s)];
@@ -121,7 +121,7 @@ export function initZones(reduce: boolean) {
     const img = pic.querySelector('img')!;
     const info = $$('.zone__info > *', next);
     // the new zone is drawn top to bottom in eight steps, like a frame refreshing
-    animate(pic, { clipPath: ['inset(0% 0% 100% 0%)', 'inset(0% 0% 0% 0%)'], duration: 650, ease: 'steps(8)' });
+    animate(pic, { clipPath: ['inset(0% 0% 100% 0%)', 'inset(0% 0% 0% 0%)'], duration: 650, ease: steps(8) });
     animate(img, { scale: [1.18, 1], duration: 1400, ease: 'outExpo' });
     animate(info, { opacity: [0, 1], x: [40, 0], duration: 800, delay: stagger(60), ease: 'outExpo' });
   };
@@ -200,7 +200,7 @@ export function initMore(reduce: boolean) {
     win.append(img);
     const done = () => { for (const x of [...win.querySelectorAll('img')].slice(0, -1)) x.remove(); };
     if (reduce) { done(); return; }
-    animate(img, { clipPath: ['inset(0% 100% 0% 0%)', 'inset(0% 0% 0% 0%)'], duration: 600, ease: 'steps(10)', onComplete: done });
+    animate(img, { clipPath: ['inset(0% 100% 0% 0%)', 'inset(0% 0% 0% 0%)'], duration: 600, ease: steps(10), onComplete: done });
     animate(img, { scale: [1.2, 1], duration: 1200, ease: 'outExpo' });
   };
   items.forEach((li) => li.addEventListener('pointerenter', () => show(li)));

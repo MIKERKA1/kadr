@@ -10,7 +10,7 @@ test.describe('КАДР', () => {
   let errors: string[];
   test.beforeEach(async ({ page }) => {
     errors = [];
-    page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+    page.on('console', (m) => { if (m.type() === 'error' || /has been removed/.test(m.text())) errors.push(m.text()); });
     page.on('pageerror', (e) => errors.push(String(e)));
     await page.goto('/');
   });
