@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-25T18:08:03.880Z",
+        "reason": "assistant: false positive, sizes come from CSS clamp tokens (h2 up to 96px, hero 310px vs 18px body), measured by taste inspector"
+      }
+    ]
+  }
+}
